@@ -1,0 +1,24 @@
+<router-outlet></router-outlet>
+<div class="col-md-12">
+  <div *ngIf="SelectedQuestionIndex>-1; else Loading">
+    <h3>Question # {{SelectedQuestion.questionId}}</h3>
+    <p>{{SelectedQuestion.question}}</p>
+    <div>
+      Time remaining {{TimerValue}} seconds...
+    </div>
+    <div *ngIf="TimerValue==0">
+      <h3>Answer</h3>
+      {{SelectedQuestion.answer}}
+    </div>
+    <button type="button" [disabled]="DisablePrevious" class="btn btn-primary btn-lg" (click)="PreviousQuestion()">
+      Previous</button>
+      &nbsp;
+    <button type="button" [disabled]="DisableNext" class="btn btn-primary btn-lg" (click)="NextQuestion()">Next</button>
+  </div>
+
+</div>
+<ng-template #Loading>
+  <p>
+    Loading questions, please wait...
+  </p>
+</ng-template>
